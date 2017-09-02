@@ -1,9 +1,94 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="appTrinca" lang="pt-br">
 <head>
-    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.5">
+    <title>Churras da Trinca</title>
+
+   @Styles.Render("~/Content/css")
+    <!--Icone que fica no Title-->
+    <link rel="icon" href="~/Content/imgs/Trinca.PNG" type="image/x-icon" />
+    <link rel="shortcut icon" href="~/Content/imgs/Trinca.PNG" type="image/x-icon" />
+
+
+    <base href='@Url.Content("~/")' />
+
 </head>
-<body>
-	@RenderBody()
+<body ng-controller="BarbecueController">
+
+    <div class="topo-wrapper display-content">
+        <div class="container">
+            <img src="~/Content/imgs/Trinca.png" class="img-responsive logo-menu" />
+            <p class="project-description hidden-xs ">TESTE</p>
+        </div>
+    </div>
+    <a class="navbar-brand" href="#"><img src="~/Content/imgs/Trinca.PNG" alt=""></a>
+    <div class="clear clearfix"></div>
+
+    <div class="menu-wrapper">
+        <div class="container">
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div class="body-content">
+        <div ng-view></div>
+    </div>
+
+    <div class="footerSpace"></div>
+
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/appTrinca")
+    @RenderSection("scripts", false)
+    <script type="text/javascript">
+        //block 'backSpace'
+        $(document).keydown(function (e) {
+
+            var element = e.target.nodeName.toLowerCase();
+
+            if (element != 'input' && element != 'textarea') {
+                if (e.keyCode === 8) {
+                    return false;
+                }
+            }
+        });
+
+        $(function () {
+
+            $('.navbar [data-toggle=collapse]').click(function (e) {
+
+                $('[data-toggle=collapse]').parent('li').removeClass('active');
+                $(this).parent('li').toggleClass('active');
+            });
+
+            $('body').on('click', '.btn-toggle-grid', function () {
+                setTimeout(function () {
+                    adjustPositionMenu();
+                }, 25);
+            });
+
+            $(document).on('click', function () {
+                $('.collapse').collapse('hide');
+            });
+
+            $(document).scroll(function () {
+
+                if ($(window).scrollTop() >= 60) {
+                    $("#navbarOne").fadeOut();
+                    $("#navbarThree").show();
+                } else {
+                    $("#navbarOne").fadeIn();
+                    $("#navbarThree").hide();
+                }
+
+            });
+
+        });
+
+
+    </script>
 </body>
 </html>

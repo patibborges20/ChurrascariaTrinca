@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace ChurrascodaTriinca.Models
 {
 	//classe contendo o evento do churrasco
@@ -9,5 +10,6 @@ namespace ChurrascodaTriinca.Models
             public string Description { get; set; }
             public double CostWithDrink { get; set; }
             public double CostWhithoutDrink{ get; set; }
+            public IEnumerable<Participants> Participant { get; set; }
     }
 }

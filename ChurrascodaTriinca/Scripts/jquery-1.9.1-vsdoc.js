@@ -430,7 +430,7 @@
             // Events bubbling up the document may have been marked as prevented
             // by a handler lower down the tree; reflect the correct value.
             this.isDefaultPrevented = (src.defaultPrevented || src.returnValue === false ||
-                src.getPreventDefault && src.getPreventDefault()) ? returnTrue : returnFalse;
+                src.defaultPrevented() && src.defaultPrevented()) ? returnTrue : returnFalse;
 
             // Event type
         } else {
